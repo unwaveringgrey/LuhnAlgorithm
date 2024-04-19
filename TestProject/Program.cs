@@ -1,6 +1,17 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-app.MapGet("/", () => ProgrammingPractice.TestFiles.LuhnAlgorithm.Main(new string[0]));
+        builder.Services.AddMvc();
 
-app.Run();
+        var app = builder.Build();
+
+        app.UseRouting();
+        app.UseHttpsRedirection();
+        app.MapControllers();
+
+        app.Run();
+    }
+}

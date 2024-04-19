@@ -1,26 +1,15 @@
-﻿using System;
-
-namespace ProgrammingPractice.TestFiles
+﻿namespace ProgrammingPractice.Models
 {
-    public class LuhnAlgorithm
+    public static class LuhnAlgorithm
     {
-
-        public static void Main(string[] args)
-        {
-            /*valid Luhn inputs
-             *123456782
-             *12345678C
-             *1234E
-             */
-
-            string LuhnInput = "1234E";
-            bool result = LuhnValidator(LuhnInput);
-            System.Console.WriteLine(result);
-        }
-
-
+        /*valid Luhn inputs
+        *123456782
+        *12345678C
+        *1234E
+        */
         //The Luhn algorithm sometimes uses letters instead of numbers for the check character. There doesn't seem to be a standard for the mapping of letters to numbers.
         //So the letters A - J are used to represent 0-9 respectively.
+        //this could potentially be updated to take a dictionary specified letter-number pairings in the future.
         static Dictionary<string, int> LuhnsDictionary = new Dictionary<string, int>() { { "A", 0 }, { "B", 1 }, { "C", 2 }, { "D", 3 },
                                                           { "E", 4 }, { "F", 5 }, { "G", 6 }, { "H", 7 }, { "I", 8 }, { "J", 9 }};
 
