@@ -5,7 +5,8 @@ namespace ProgrammingPractice.Controllers
     public class HomeController : Controller
     {
         [Route("")]
-        [Route("Home")]
+        [HttpGet]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult Index()
         {
             return View("../HomeView");

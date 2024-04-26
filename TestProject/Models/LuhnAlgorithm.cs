@@ -13,7 +13,7 @@
         static Dictionary<string, int> LuhnsDictionary = new Dictionary<string, int>() { { "A", 0 }, { "B", 1 }, { "C", 2 }, { "D", 3 },
                                                           { "E", 4 }, { "F", 5 }, { "G", 6 }, { "H", 7 }, { "I", 8 }, { "J", 9 }};
 
-        public static bool LuhnValidator(string input, bool allowLuhnNumbers = true)
+        public static bool Validate(string input, bool allowLuhnNumbers = true)
         {
             string validator = input.Substring(input.Length - 1);
             if (!((allowLuhnNumbers && Char.IsLetterOrDigit(validator, 0)) || Char.IsLetter(validator, 0)))
@@ -27,10 +27,10 @@
             {
                 if (i%2 == 0)
                 {
-                    total += digitAddition((Int32.Parse(luhnNumbers.Substring(i, 1)) * 2).ToString());
+                    total += DigitAddition((Int32.Parse(luhnNumbers.Substring(i, 1)) * 2).ToString());
                 } else
                 {
-                    total += digitAddition(luhnNumbers.Substring(i, 1));
+                    total += DigitAddition(luhnNumbers.Substring(i, 1));
                 }
             }
 
@@ -43,7 +43,7 @@
             return false;
         }
 
-        private static int digitAddition(string input)
+        private static int DigitAddition(string input)
         {
             int result;
 

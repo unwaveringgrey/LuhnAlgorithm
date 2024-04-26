@@ -3,4 +3,55 @@
 *@
 @{
 }
-TODO: Add the UI to do anything with this page.
+
+<head>
+    <H1>Luhn Algorithm Page</H1>
+
+    <div>
+        @Html.ActionLink("Home Page", "Index", "Home")
+    </div>
+</head>
+<body>
+    <form>
+        <div>
+            <label>Text to Validate:</label>
+            <input type="text" id="luhnText" />
+        </div>
+        <div>
+            <input type="button" id="luhnValidateButton" value="Validate Input"/>
+        </div>
+    </form>
+    <div id="luhnValidateResult"></div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#luhnValidateButton").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("LuhnValidate")",
+                    beforeSend: function () {
+                        $("#luhnValidateResult").html("");
+                    },
+                    data: { "luhnString": $("#luhnText").val() },
+                    success: function (response) {
+                        if (response.luhnValid) {
+                            $("#luhnValidateResult").html("Validated.");
+                        } else {
+                            $("#luhnValidateResult").html("Did not validate.");
+                        }
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body>
